@@ -7,7 +7,13 @@ import { columns } from "./columns";
 export default async function Client() {
     const data = await getServerSession(authOptions);
     
-    if(!data) return <h1>Forbidden</h1>
+    if(!data) return (
+        <>
+            <h1 className="flex flex-row items-center justify-center mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Forbidden</h1>
+            <p className="font-bold pl-20 pr-20 sm:h-40 md:p-10 flex justify-center items-center h-50 text-balance">You are not allowed to access this page without login.</p>
+        </>
+        
+    )
 
     if (data) {
         // Get data from FMS using OData API
@@ -15,7 +21,7 @@ export default async function Client() {
         const database = connection.database(process.env.DATABASE!);
         const clientTable = database.table(process.env.TABLE!);
         const clients = await clientTable.query({
-            top: 10
+            top: 1000
         });
         
         //Remove attributes to match up to Client Type
@@ -32,10 +38,14 @@ export default async function Client() {
         })
         
         return (
-            <DataTable 
-                columns={columns} 
-                data={clientsData}
-            />
+            <>
+                <h1 className="mb-4 flex flex-row justify-center items-center text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Clients</h1>
+                <DataTable 
+                    columns={columns}
+                    data={clientsData}
+                />
+            </>
+            
         )
     }
 };

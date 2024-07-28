@@ -1,10 +1,10 @@
 import {
     getServerSession,
     type NextAuthOptions,
-  } from "next-auth";
-  import Credentials from "next-auth/providers/credentials";
+} from "next-auth";
+import Credentials from "next-auth/providers/credentials";
   
-  export const authOptions: NextAuthOptions = {
+export const authOptions: NextAuthOptions = {
     session: {
       strategy: "jwt",
     },
@@ -53,6 +53,6 @@ import {
         },
       })
     ],
-  };
+};
   
-  export const getServerAuthSession = () => getServerSession(authOptions); //(6)
+export const getServerAuthSession = () => getServerSession(authOptions); //(6)
