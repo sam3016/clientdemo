@@ -17,23 +17,23 @@ export default async function Client() {
             top: 10
         });
         
-        // const clientsData = clients.map(client => {
-        //     return {
-        //         id: client.id,
-        //         first_name: client.first_name,
-        //         last_name: client.last_name,
-        //         email: client.email,
-        //         gender: client.gender,
-        //         country: client.country,
-        //         city: client.city,
-        //     }
-        // })
+        const clientsData = clients.map(client => {
+            return {
+                id: client.id as string,
+                first_name: client.first_name as string,
+                last_name: client.last_name as string,
+                email: client.email as string,
+                gender: client.gender as string,
+                country: client.country as string,
+                city: client.city as string,
+            }
+        })
         
         
         return (
             <DataTable 
                 columns={columns} 
-                data={clients}
+                data={clientsData}
             />
         )
     }
