@@ -19,11 +19,11 @@ import { useRouter } from 'next/navigation';
 import { signIn } from "next-auth/react";
 
 const formSchema = z.object({
-  username: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
+  username: z.string().min(1, {
+    message: "Username cannot be empty.",
   }),
-  password: z.string().min(2, {
-    message: "Password must be at least 2 characters.",
+  password: z.string().min(1, {
+    message: "Password cannot be empty.",
   }),
 })
 
@@ -52,10 +52,15 @@ export default function Home() {
       router.push('/client');
       router.refresh();
     }
+
+    if (response?.error) {
+      alert("Wrong username or password. Please try again!")
+    }
   }
   
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-24">
+      <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Client Demo</h1>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           <FormField
@@ -90,7 +95,8 @@ export default function Home() {
               </FormItem>
             )}
           />
-          <Button type="submit">Login</Button>
+          <br />
+          <Button type="submit" hidden>Login</Button>
         </form>
       </Form>
     </main>

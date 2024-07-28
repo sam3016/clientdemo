@@ -10,12 +10,25 @@ export default async function Client() {
     if(!data) return <h1>Forbidden</h1>
 
     if (data) {
-        const connection = new Connection(process.env.HOST!, new BasicAuth(data.user?.username!, data.user?.password!));
+        const connection = new Connection(process.env.HOST!, new BasicAuth(data.user?.username, data.user?.password));
         const database = connection.database(process.env.DATABASE!);
         const clientTable = database.table(process.env.TABLE!);
         const clients = await clientTable.query({
-            top: 100
+            top: 10
         });
+        
+        // const clientsData = clients.map(client => {
+        //     return {
+        //         id: client.id,
+        //         first_name: client.first_name,
+        //         last_name: client.last_name,
+        //         email: client.email,
+        //         gender: client.gender,
+        //         country: client.country,
+        //         city: client.city,
+        //     }
+        // })
+        
         
         return (
             <DataTable 

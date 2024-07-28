@@ -29,7 +29,7 @@ import {
         async authorize(credentials) {
             const username = credentials?.username ?? "";
             const password = credentials?.password ?? "";
-            const res = await fetch(`https://${process.env.HOST}/fmi/odata/v4/${process.env.DATABASE}/${process.env.FILE}`, {
+            const res = await fetch(`https://${process.env.HOST}/fmi/odata/v4/${process.env.DATABASE}/${process.env.TABLE}`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
