@@ -6,18 +6,19 @@ import {
   
   export const authOptions: NextAuthOptions = {
     session: {
-      strategy: "jwt", //(1) the default is jwt when no adapter defined, we redefined here to make it obvious what strategy that we use 
+      strategy: "jwt",
     },
     callbacks: {
       async jwt({ token, user}) {
         return { ...token, ...user };
       },
+      // set token to user object
       async session({ session, token }) {
         return { ...session, user: token };
       },
     },
     pages: {
-      signIn: '/', //(4) custom signin page path
+      signIn: '/', 
     },
     providers: [
         Credentials({
@@ -29,6 +30,7 @@ import {
         async authorize(credentials) {
             const username = credentials?.username ?? "";
             const password = credentials?.password ?? "";
+            // Use Odata API to authenticate the account
             const res = await fetch(`https://${process.env.HOST}/fmi/odata/v4/${process.env.DATABASE}/${process.env.TABLE}`, {
                 method: "GET",
                 headers: {

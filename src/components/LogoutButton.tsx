@@ -8,7 +8,7 @@ function LogoutButton() {
         <Button 
             variant="outline" 
             size="icon" 
-            onClick={() => signOut({ callbackUrl: 'http://localhost:3000/' })}
+            onClick={() => signOut({ callbackUrl: "/" })}
         >
             <LogOutIcon />
         </Button>

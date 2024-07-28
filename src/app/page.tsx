@@ -37,17 +37,14 @@ export default function Home() {
   })
   const router = useRouter();
   
-  // 2. Define a submit handler.
+
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
     const response = await signIn('credentials', {
       username: values.username,
       password: values.password,
       redirect: false,
     });
 
-    //console.log({ response });
     if (!response?.error) {
       router.push('/client');
       router.refresh();

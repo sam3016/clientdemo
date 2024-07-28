@@ -8,8 +8,6 @@ import {
   NavigationMenuList,
 } from "@/components/ui/navigation-menu"
 
-
-
 async function Header() {
   const data = await getServerSession(authOptions);
   return (
@@ -24,7 +22,6 @@ async function Header() {
             <LogoutButton />
           </NavigationMenuItem>
           )}
-          
         </NavigationMenuList>
       </NavigationMenu>
     </nav>
