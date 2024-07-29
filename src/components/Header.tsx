@@ -18,6 +18,7 @@ async function Header() {
             <ModeToggle />
           </NavigationMenuItem>
           {data && (
+            // Display the logout button when login
             <NavigationMenuItem>
             <LogoutButton />
           </NavigationMenuItem>
