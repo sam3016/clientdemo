@@ -39,6 +39,7 @@ export default async function Client() {
         
         return (
             <>
+                <p className="text-sm flex flex-row items-end justify-end text-gray-500 dark:text-gray-300 sm:text-center">You are logged as {data.user?.username}</p>
                 <h1 className="mb-4 flex flex-row justify-center items-center text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Clients</h1>
                 <DataTable 
                     columns={columns}
